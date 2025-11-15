@@ -1,9 +1,8 @@
 import datetime
-import uuid
 import random
 
 def generate_uuid():
-  mac_addr = uuid.getnode()
+  mac_addr = "00e01e756166"
 
   uuid_epoch = datetime.datetime(1582, 10, 15, tzinfo=datetime.timezone.utc)
   now = datetime.datetime.now(tz=datetime.timezone.utc)
@@ -18,7 +17,7 @@ def generate_uuid():
   
   random_hex = f"{random.getrandbits(4 * 4):04x}"
 
-  return f"{time_low}-{time_mid}-{time_hi_and_version}-{random_hex}-{mac_addr:012x}"
+  return f"{time_low}-{time_mid}-{time_hi_and_version}-{random_hex}-{mac_addr}"
 
 def removePrefix(bitsOrHex):
   result = bitsOrHex[2:]
@@ -42,5 +41,4 @@ def hexToBits(hex_string, prefix=False):
   return result
 
 for i in range(20):
-  print(f"Fake: {generate_uuid()}")
-  print(f"Real: {uuid.uuid1()}")
+  print(generate_uuid())
